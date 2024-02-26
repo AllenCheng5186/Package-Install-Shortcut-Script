@@ -22,7 +22,7 @@ sudo systemctl enable --now containerd.service
 
 # Verify that the Docker Engine installation is successful by running the hello-world image.
 if sudo docker run --rm hello-world 2>/dev/null | grep -q "Hello from Docker!"; then
-    if docker-compose version 2>/dev/null | grep -q "docker-compose version"; then
+    if docker compose version 2>/dev/null | grep -q "Docker Compose version"; then
         # check existence of the group named "docker"
         if ! getent group docker > /dev/null; then
             # create the docker group
