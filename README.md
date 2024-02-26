@@ -1,4 +1,4 @@
-# Package-Install-Script
+# Package-Install-Shortcut-Script
 Common packages and services install shutcut scripts
 
 _**Caution: Review every lines of commands in the scripts before you run!**_
