@@ -21,20 +21,22 @@ sudo systemctl enable --now docker.service
 sudo systemctl enable --now containerd.service
 
 # Verify that the Docker Engine installation is successful by running the hello-world image.
-if sudo docker run --rm hello-world | grep -q "Hello from Docker!"; then
-  if docker compose version | grep -q "Docker Compose version"; then
-    # add current user to docker group to run docker command without sudo
-    # Create the docker group.
-    sudo groupadd docker
-    # Add your user to the docker group.
-    sudo usermod -aG docker $USER
-    # activate the changes to groups
-    newgrp docker
-    # Verify that you can run docker commands without sudo.
-    docker run --rm hello-world
-  else
-    echo "Docker install successfully! Docker compose does not!"
-    echo "check docker docs: https://docs.docker.com/compose/install/"
+if sudo docker run --rm hello-world 2>/dev/null | grep -q "Hello from Docker!"; then
+    if docker-compose version 2>/dev/null | grep -q "docker-compose version"; then
+        # check existence of the group named "docker"
+        if ! getent group docker > /dev/null; then
+            # create the docker group
+            sudo groupadd docker
+        fi
+        # Add current user to the docker group
+        sudo usermod -aG docker $USER
+        echo "You might need to log out and log back in or restart your system to make group changes effective."
+        echo "After that, you can verify that you can run docker commands without sudo."
+    else
+        echo "Docker installed successfully! Docker Compose does not!"
+        echo "Check Docker Compose installation docs: https://docs.docker.com/compose/install/"
+    fi
 else
-  echo "Docker install fail!"
-  echo "check docker docs: "https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository"
+    echo "Docker installation failed!"
+    echo "Check Docker installation docs: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository"
+fi
