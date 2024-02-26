@@ -18,4 +18,4 @@ _**Caution: Review every lines of commands in the scripts before you run!**_
     - shell script run command: 
     ```
     curl -s https://raw.githubusercontent.com/AllenCheng5186/Package-Install-Shortcut-Script/main/Ubuntu/docker_install.sh > ubuntu_docker.sh && bash ubuntu_docker.sh
-    ```
+    ``` 
