@@ -23,6 +23,7 @@ _**Caution: Review every lines of commands in the scripts before you run!**_
 ## Arch
 -   [docker](/Arch/arch_docker_install.sh):
     - Arch wiki docker topic: https://wiki.archlinux.org/title/docker
+    - verified on kernel verison: 6.7.5-arch1-1
     - include: docker docker-compose
         - install both docker main service and docker-compose plugin
         - test installation output result
